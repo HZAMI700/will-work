@@ -1,0 +1,487 @@
+:root {
+    /* Modern Color Palette */
+    --color-background: #0D1117;
+    --color-surface: rgba(22, 27, 34, 0.6);
+    --color-primary: #58A6FF; /* A vibrant blue for accents */
+    --color-secondary: #8B949E; /* Softer grey for text */
+    --color-text: #C9D1D9;
+    --color-border: rgba(139, 148, 158, 0.2);
+    --color-shadow: rgba(0, 0, 0, 0.5);
+    --color-live-bg: #DA3633;
+    --color-live-text: #FFFFFF;
+    
+    /* Effects & Transitions */
+    --border-radius-main: 16px;
+    --border-radius-sub: 10px;
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --backdrop-blur: saturate(180%) blur(20px);
+}
+
+/* Base & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: "Ubuntu", sans-serif;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 25px 25px;
+}
+
+/* Container */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.site-title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-shadow: 0 0 15px rgba(88, 166, 255, 0.5);
+}
+
+.site-title:hover {
+    color: var(--color-primary);
+    transform: scale(1.02);
+}
+
+/* Navigation */
+.navbar {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 50px;
+    backdrop-filter: var(--backdrop-blur);
+}
+
+.nav-links a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: var(--transition-smooth);
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+    color: var(--color-primary);
+}
+
+.nav-links a.active {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+}
+
+/* Main Content & Grid */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 260px);
+    gap: 25px;
+    padding: 0 40px 40px;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Sport Card */
+.sport-card {
+    height: 380px;
+    border-radius: var(--border-radius-main);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--color-border);
+    transition: var(--transition-smooth);
+    background: #000;
+    cursor: pointer;
+}
+
+.sport-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px var(--color-shadow);
+    border-color: rgba(88, 166, 255, 0.5);
+}
+
+.sport-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sport-card:hover .sport-image {
+    transform: scale(1.1);
+}
+
+.sport-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(13, 17, 23, 1) 10%, rgba(13, 17, 23, 0.3) 50%, transparent 100%);
+    z-index: 1;
+}
+
+.sport-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px;
+    text-align: left;
+    z-index: 2;
+    transform: translateY(0);
+    transition: var(--transition-smooth);
+}
+
+.sport-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.sport-category {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+/* Live Indicator */
+.live-indicator {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--color-live-bg);
+    color: var(--color-live-text);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    z-index: 3;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(218, 54, 51, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(218, 54, 51, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(218, 54, 51, 0); }
+}
+
+
+/* Matches & Streams View */
+.content-host {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.matches-container, .streams-container {
+    max-width: 1000px;
+    width: 95%;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 15px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.back-button {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 30px;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+}
+
+.match-title-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: right;
+    color: #fff;
+}
+
+/* Match Card */
+.match-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    backdrop-filter: var(--backdrop-blur);
+    border-radius: var(--border-radius-sub);
+    padding: 20px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.match-card:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+    border-color: rgba(88, 166, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+.match-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-text);
+}
+
+.match-date {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+/* Streams */
+.stream-source-section {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sub);
+    padding: 20px;
+}
+
+.source-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #fff;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.streams-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.stream-item {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    backdrop-filter: var(--backdrop-blur);
+    border-radius: var(--border-radius-sub);
+    padding: 15px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.stream-item:hover {
+    background-color: rgba(88, 166, 255, 0.15);
+    border-color: rgba(88, 166, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+.stream-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stream-number {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+.stream-language {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+.quality-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.quality-badge.hd {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+}
+
+.quality-badge.sd {
+    background-color: rgba(241, 196, 15, 0.15);
+    color: #f1c40f;
+}
+
+/* Stream Player */
+.player-area {
+    width: 100%;
+    margin: 0 auto 20px;
+    border-radius: var(--border-radius-sub);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background-color: #000;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: var(--color-surface);
+}
+
+.stream-info-header {
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+.close-player {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-player:hover {
+    background-color: var(--color-live-bg);
+    transform: rotate(90deg);
+}
+
+.player-area iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+}
+
+/* Footer */
+.footer {
+    margin-top: 80px;
+    padding: 50px 0;
+    background-color: transparent;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.footer-title {
+    font-size: 2.2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.footer-title:hover {
+    color: var(--color-primary);
+}
+
+.footer-copyright {
+    text-align: center;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+
+/* Loading and Error States */
+.loading, .error, .no-matches, .no-streams {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    font-size: 1.2rem;
+    color: var(--color-text);
+}
+
+.error {
+    color: #ff5555;
+}
+
+/* Responsive Design */
+@media (max-width: 980px) {
+    .site-title { font-size: 3rem; }
+    .grid-container { grid-template-columns: repeat(auto-fit, 240px); }
+}
+
+@media (max-width: 768px) {
+    .header { padding: 40px 15px; }
+    .nav-links { padding: 8px; gap: 5px; }
+    .nav-links a { padding: 8px 15px; font-size: 0.9rem; }
+    .grid-container { gap: 20px; padding: 0 20px 30px; }
+    .section-header { flex-direction: column; gap: 15px; text-align: center; }
+    .match-title-header { text-align: center; }
+}
+
+@media (max-width: 540px) {
+    .grid-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .sport-card { height: 320px; }
+    .site-title { font-size: 2.5rem; }
+    .nav-links { flex-direction: column; border-radius: 20px; align-items: stretch; text-align: center; }
+}
