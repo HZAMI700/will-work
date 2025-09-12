@@ -2,7 +2,7 @@
 const CONFIG = {
     // Site Information
     siteTitle: "Crackstream",
-    pageTitle: "Watch Live Sports",
+    pageTitle: "Crackstream Online Watch live football, basketball, UFC, boxing, hockey",
     
     // Footer Configuration
     footer: {
