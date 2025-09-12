@@ -1,7 +1,7 @@
 // Site Configuration
 const CONFIG = {
     // Site Information
-    siteTitle: "WeStream",
+    siteTitle: "Crackstream",
     pageTitle: "Watch Live Sports",
     
     // Footer Configuration
