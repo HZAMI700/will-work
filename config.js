@@ -6,9 +6,9 @@ const CONFIG = {
     
     // Footer Configuration
     footer: {
-        title: "WeStream",
+        title: "Crackstream",
         showNavLinks: true,
-        copyright: " 2025 WeStream. All rights reserved."
+        copyright: " 2025 HZAMI. All rights reserved."
     },
     
     // Color Scheme
